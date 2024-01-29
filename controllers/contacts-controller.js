@@ -50,9 +50,16 @@ const add = async (req, res, next) => {
         }
 
         const { _id: owner} = req.user
-        const result = await Contact.create({...req.body, owner, avatarURL}, "name email phone favorite avatarURL");
+        const result = await Contact.create({...req.body, owner, avatarURL});
 
-        res.status(201).json(result)
+        res.status(201).json({
+            "name": result.name,
+            "email": result.email,
+            "phone": result.phone,
+            "favorite": result.favorite,
+            "avatar": result.avatarURL,
+            "_id": result._id
+        })
     } catch (error) {
         next(error)
     }
