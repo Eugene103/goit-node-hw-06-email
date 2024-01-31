@@ -15,8 +15,6 @@ const getAll = async (req, res, next) => {
             const result = await Contact.find({ owner, favorite: favorite }, "name email phone favorite avatarURL", { skip, limit });
             res.json(result)
         }
-        
-        
   
     } catch (error) {
        next(error)
